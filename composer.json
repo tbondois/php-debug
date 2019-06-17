@@ -1,7 +1,6 @@
 {
-    "name": "tbondois/php-toolbox",
-    "description": ":x:x",
-
+    "name": "tbondois/php-debug",
+    "description": "PHP debug libraries (dumpers...) for common needs",
     "require": {
         "php": ">=7.0",
         "kint-php/kint": "^3.2"
