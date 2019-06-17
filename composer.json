@@ -1,0 +1,45 @@
+{
+    "name": "tbondois/php-toolbox",
+    "description": ":x:x",
+
+    "require": {
+        "php": ">=7.0",
+        "kint-php/kint": "^3.2"
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "kint": {
+            "disable-helpers": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "TB\\Debug\\": "src/"
+        },
+        "files": [
+            "init/aliases.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TB\\Debug\\Test\\": "tests/"
+        }
+    },
+    "license": "MIT",
+    "homepage": "https://packagist.org/packages/tbondois/php-debug",
+    "authors": [
+        {
+            "name": "Thomas Bondois",
+            "homepage": "http://thomas.bondois.info"
+        }
+    ],
+    "keywords": [
+        "debug",
+        "varprint",
+        "printer",
+        "print",
+        "dump",
+        "dumper",
+        "php"
+    ]
+}
