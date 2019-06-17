@@ -7,7 +7,7 @@
     },
     "minimum-stability": "stable",
     "suggest": {
-        "maximebf/php-debugbar": "A generic Debug toolbar"
+        "maximebf/debugbar": "A generic PHP Debug toolbar monitoring errors and exception, sql queries, ajax etc"
     },
     "extra": {
         "kint": {
