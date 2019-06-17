@@ -1,6 +1,6 @@
 {
     "name": "tbondois/php-debug",
-    "description": "PHP debug libraries (dumpers...) for common needs. should not be installed in production",
+    "description": "PHP debug libraries (dumpers...) for common needs. should not be installed in production or use IP restriction feature.",
     "require": {
         "php": ">=7.0",
         "kint-php/kint": "^3.2"
@@ -10,11 +10,6 @@
         "tbondois/php-toolbox": "PHP libraries for common needs",
         "maximebf/debugbar": "A generic PHP Debug toolbar monitoring errors and exception, sql queries, ajax etc",
         "symfony/debug": "Allow you to easily catch PHP errors, uncaught exceptions, class loader errors and display them nicely"
-    },
-    "extra": {
-        "kint": {
-            "disable-helpers": true
-        }
     },
     "autoload": {
         "psr-4": {
@@ -27,6 +22,11 @@
     "autoload-dev": {
         "psr-4": {
             "TB\\Debug\\Test\\": "tests/"
+        }
+    },
+    "extra": {
+        "kint": {
+            "disable-helpers": true
         }
     },
     "license": "MIT",

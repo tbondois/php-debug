@@ -50,7 +50,7 @@ sd("simple print and die!");
 
 ### Access Control (Recommended for Production environments)
 
-- To ensure this library functions (like Dump::auto() will be skipped, define manually in your `$_ENV` or `$_SERVER `:
+- To ensure this functions will be skipped, define manually in your `$_ENV` or `$_SERVER ` :
 
 ```
 TB_DEBUG_RESTRICTED = true
