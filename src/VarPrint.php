@@ -20,7 +20,7 @@ class VarPrint
      * @param mixed ...$vars
      * @return int|string|null
      */
-    public function rich(...$vars)
+    public static function rich(...$vars)
     {
         if (!static::isEnabled()) {
             return null;
@@ -47,7 +47,7 @@ class VarPrint
         $stashedMode = Kint::$enabled_mode;
         if (Kint::MODE_TEXT !== Kint::$enabled_mode) {
             Kint::$enabled_mode = Kint::MODE_PLAIN;
-            if (PHP_SAPI === 'rich_cli' && true === Kint::$cli_detection) {
+            if (PHP_SAPI === 'cli' && true === Kint::$cli_detection) {
                 Kint::$enabled_mode = Kint::MODE_TEXT;
             }
         }

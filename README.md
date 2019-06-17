@@ -41,8 +41,10 @@ use TB\Debug\VarPrint;
 
 VarPrint::rich("hello!");
 VarPrint::simple("Lite version !");
-dd("Alias !");
-sd("Lite version alias !");
+d("Rich print Alias !");
+s("Simple print alias !");
+dd("rich print and die!");
+sd("simple print and die!");
 ```
 
 
