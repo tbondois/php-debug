@@ -11,7 +11,7 @@ class Access
     const ENV_ALLOWED_ADDRS  = "TB_DEBUG_ALLOWED_ADDRS";
 
     /**
-     * Detect if dump is permanently blocked
+     * Detect if focus is permanently blocked
      * @return bool
      */
     public static function isAllowed()

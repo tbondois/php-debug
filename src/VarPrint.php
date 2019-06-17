@@ -3,6 +3,7 @@
 namespace TB\Debug;
 
 use Kint\Kint;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * @author Thomas Bondois
@@ -13,6 +14,22 @@ class VarPrint
     const ENV_ALLOWED_ADDRS     = "TB_DEBUG_ALLOWED_ADDRS";
 
     protected static $isEnabled = true;
+
+    /**
+     * use symfony focus() function (in case of problem with Kint), handling isEnabled
+     * @param mixed ...$vars
+     * @return int|string
+     */
+    public static function focus(...$vars)
+    {
+        if (!static::isEnabled() && function_exists("dump")) {
+            return null;
+        }
+
+        foreach ($vars as $var) {
+            VarDumper::dump($var);
+        }
+    }
 
 
     /**
@@ -51,14 +68,14 @@ class VarPrint
                 Kint::$enabled_mode = Kint::MODE_TEXT;
             }
         }
-        $out = Kint::dump(...$vars);
+        $dump = Kint::dump(...$vars);
         Kint::$enabled_mode = $stashedMode;
-        return $out;
+        return $dump;
     }
 
 
     /**
-     * dump in rich text (colored lines - some terminal don't manage it properly)
+     * focus in rich text (colored lines - some terminal don't manage it properly)
      * @param mixed ...$vars
      * @return int|string
      */
@@ -72,7 +89,7 @@ class VarPrint
     }
 
     /**
-     * dump in just text
+     * focus in just text
      * @param mixed ...$vars
      * @return int|string
      */
@@ -89,7 +106,7 @@ class VarPrint
     }
 
     /**
-     * dump in rich text
+     * focus in rich text
      * @param mixed ...$vars
      * @return int|string
      */
@@ -106,7 +123,7 @@ class VarPrint
     }
 
     /**
-     * dump in text text
+     * focus in text text
      * @param mixed ...$vars
      * @return int|string
      */
@@ -121,7 +138,6 @@ class VarPrint
         Kint::$enabled_mode = $stashedMode;
         return $dump;
     }
-
 
     public static function isEnabled()
     {

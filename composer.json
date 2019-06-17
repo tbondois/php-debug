@@ -3,7 +3,8 @@
     "description": "PHP debug libraries (dumpers...) for common needs. should not be installed in production or use IP restriction feature.",
     "require": {
         "php": ">=7.0",
-        "kint-php/kint": "^3.2"
+        "kint-php/kint": "^3.2",
+        "symfony/var-dumper": "*"
     },
     "minimum-stability": "stable",
     "suggest": {

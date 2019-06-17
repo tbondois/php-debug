@@ -4,7 +4,7 @@ PHP Debug
 Presentation
 ---------------
 
-This project is based on [Kint][1]. I added some features like IP restrictions. 
+This project is based on [Kint][1] and [VarDumper][2]. I added some features like IP restrictions. 
 
 Installation in a project
 ---------------
@@ -39,12 +39,17 @@ Usage
 include_once 'vendor/autoload.php';
 use TB\Debug\VarPrint;
 
-VarPrint::rich("hello!");
-VarPrint::simple("Lite version !");
-d("Rich print Alias !");
-s("Simple print alias !");
-dd("rich print and die!");
-sd("simple print and die!");
+VarPrint::rich("Kint rich print");
+VarPrint::simple("Kint simple print");
+VarPrint::focus("VarDumper print");
+
+vp_rich("Rich print Alias !");
+vp_simple("Simple print alias !");
+vp_focus("VarDumper print alias !");
+
+kill_vp_rich("Rich-print and kill script");
+kill_vp_simple("Simple-print and kill script");
+vp_focus("VarDumper print and kill script");
 ```
 
 
@@ -71,3 +76,4 @@ References
 ---------------
 
 [1]: https://kint-php.github.io/kint/
+[2]: https://symfony.com/doc/current/components/var_dumper.html
