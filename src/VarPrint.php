@@ -9,8 +9,8 @@ use Kint\Kint;
  */
 class VarPrint
 {
-    const ENV_IS_BLOCKED = "TB_DEBUG_DUMP_BLOCK";
-    const ENV_ALLOW_ONLY_IPS  = "TB_DEBUG_DUMP_IP";
+    const TB_DEBUG_RESTRICTED   = "TB_DEBUG_RESTRICTED";
+    const ENV_ALLOWED_ADDRS     = "TB_DEBUG_ALLOWED_ADDRS";
 
     protected static $isEnabled = true;
 
