@@ -1,13 +1,14 @@
 {
     "name": "tbondois/php-debug",
-    "description": "PHP debug libraries (dumpers...) for common needs",
+    "description": "PHP debug libraries (dumpers...) for common needs. shoule not be installed in production",
     "require": {
         "php": ">=7.0",
         "kint-php/kint": "^3.2"
     },
     "minimum-stability": "stable",
     "suggest": {
-        "maximebf/debugbar": "A generic PHP Debug toolbar monitoring errors and exception, sql queries, ajax etc"
+        "maximebf/debugbar": "A generic PHP Debug toolbar monitoring errors and exception, sql queries, ajax etc",
+        "symfony/debug": "Allow you to easily catch PHP errors, uncaught exceptions, class loader errors and display them nicely"
     },
     "extra": {
         "kint": {
