@@ -4,7 +4,7 @@ PHP Debug
 Presentation
 ---------------
 
-This project is based on [Kint][1]. I added some features. 
+This project is based on [Kint][1]. I added some features like IP restrictions. 
 
 Installation in a project
 ---------------
