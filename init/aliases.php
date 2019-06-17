@@ -72,5 +72,6 @@ if (!function_exists('kill_vp_focus')) {
     function kill_vp_focus(...$args)
     {
         return VarPrint::focus(...$args);
+        die("\n/die.\n");
     }
 }
