@@ -49,7 +49,7 @@ vp_focus("VarDumper print alias !");
 
 kill_vp_rich("Rich-print and kill script");
 kill_vp_simple("Simple-print and kill script");
-vp_focus("VarDumper print and kill script");
+kill_vp_focus("VarDumper print and kill script");
 ```
 
 
