@@ -6,6 +6,9 @@
         "kint-php/kint": "^3.2"
     },
     "minimum-stability": "stable",
+    "suggest": {
+        "maximebf/php-debugbar": "A generic Debug toolbar"
+    },
     "extra": {
         "kint": {
             "disable-helpers": true
