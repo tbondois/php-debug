@@ -18,16 +18,31 @@ class VarPrint
 
 
     /**
+     * return instead of printing
+     * @param mixed ...$vars
+     * @return string|null
+     */
+    public static function return(...$vars)
+    {
+        $stashedReturn = Kint::$return;
+        Kint::$return = true;
+        $out =  static::kint_dump_render(Kint::MODE_TEXT, ...$vars);
+        Kint::$return = $stashedReturn;
+        return $out;
+    }
+
+    /**
      * Should run html_rich() or cli_rich()
      * @param mixed ...$vars
-     * @return int|string|null
+     * @return string|null
      */
     public static function rich(...$vars)
     {
-        if (!static::isEnabled()) {
-            return null;
+        $renderer = Kint::MODE_RICH;
+        if (PHP_SAPI === 'cli' && true === Kint::$cli_detection) {
+            $renderer = Kint::MODE_CLI;
         }
-        return Kint::dump(...$vars);
+        return static::kint_dump_render($renderer, ...$vars);
     }
 
     /**
@@ -39,13 +54,10 @@ class VarPrint
      *
      * @see s()
      * @param mixed ...$vars
-     * @return int|mixed|null
+     * @return string|null
      */
     public static function simple(...$vars)
     {
-        if (!static::isEnabled()) {
-            return null;
-        }
         $renderer = Kint::MODE_PLAIN;
         if (PHP_SAPI === 'cli' && true === Kint::$cli_detection) {
             $renderer = Kint::MODE_TEXT;
@@ -63,9 +75,6 @@ class VarPrint
      */
     public static function console(...$vars)
     {
-        if (!static::isEnabled()) {
-            return null;
-        }
         $renderer = JsRenderer::RENDER_MODE;
         if (PHP_SAPI === 'cli' && true === Kint::$cli_detection) {
             $renderer = Kint::MODE_TEXT;
@@ -76,7 +85,7 @@ class VarPrint
     /**
      * content in rich text
      * @param mixed ...$vars
-     * @return int|string|null
+     * @return string|null
      */
     public static function html_rich(...$vars)
     {
@@ -96,7 +105,7 @@ class VarPrint
     /**
      * content in rich text (colored lines - some terminal don't manage it properly)
      * @param mixed ...$vars
-     * @return int|string|null
+     * @return string|null
      */
     public static function cli_rich(...$vars)
     {
@@ -106,13 +115,12 @@ class VarPrint
     /**
      * content in just text
      * @param mixed ...$vars
-     * @return int|string|null
+     * @return string|null
      */
     public static function cli_simple(...$vars)
     {
         return static::kint_dump_render(Kint::MODE_TEXT, ...$vars);
     }
-
 
     /**
      * Render for js console log Skip cli detection

@@ -62,6 +62,17 @@ if (!function_exists($kintAlias)) {
     Kint::$aliases[] = $kintAlias;
 }
 
+
+// Return Kint text alias :
+$kintAlias = 'print_return';
+if (!function_exists($kintAlias)) {
+    function print_return(...$args)
+    {
+        return VarPrint::return(...$args);
+    }
+    Kint::$aliases[] = $kintAlias;
+}
+
 // Sf dump alias :
 if (!function_exists('print_content')) {
     function print_content(...$args)

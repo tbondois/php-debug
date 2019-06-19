@@ -39,15 +39,18 @@ Usage
 include_once 'vendor/autoload.php';
 use TB\Debug\VarPrint;
 
-VarPrint::rich("Kint rich print");
-VarPrint::simple("Kint simple print");
+VarPrint::rich("Kint rich print in hmtl or terminal");
+VarPrint::simple("Kint simple print in hmtl or terminal");
 VarPrint::content("Symfony-VarDumper print");
-VarPrint::console("Kint log in browser JS console!");
+VarPrint::console("Kint log in browser JS console, or terminal");
+$dump = VarPrint::return("Kint log in browser JS console!"); // do not print but return, to use in a log file for example
+
 
 print_rich("Kint rich print Alias !");
 print_simple("Kint simple print alias !");
 print_content("Symfony-VarDumper alias !");
 print_console("Kint browser-console log alias");
+print_return("Kint return alias");
 
 die_rich("Rich-print and kill script");
 die_simple("Simple-print and kill script");
