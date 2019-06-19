@@ -119,7 +119,6 @@ class VarPrint
      * @param mixed ...$vars
      *
      * @return int|string|null
-     * @author Thomas Bondois <thomas.bondois@agence-tbd.com>
      */
     public static function console_js(...$vars)
     {

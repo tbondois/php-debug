@@ -113,4 +113,3 @@ if (!function_exists('die_content')) {
 }
 
 unset($kintAlias);
-
