@@ -14,7 +14,8 @@
     "suggest": {
         "tbondois/php-toolbox": "PHP libraries for common needs",
         "maximebf/debugbar": "A generic PHP Debug toolbar monitoring errors and exception, sql queries, ajax etc",
-        "symfony/debug": "Allow you to easily catch PHP errors, uncaught exceptions, class loader errors and display them nicely"
+        "symfony/debug": "Allow you to easily catch PHP errors, uncaught exceptions, class loader errors and display them nicely",
+        "symfony/dotenv": "An easy way to manage IP restriction for debug features, in sensitive environments"
     },
     "autoload": {
         "psr-4": {
