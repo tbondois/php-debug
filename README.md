@@ -41,15 +41,18 @@ use TB\Debug\VarPrint;
 
 VarPrint::rich("Kint rich print");
 VarPrint::simple("Kint simple print");
-VarPrint::focus("VarDumper print");
+VarPrint::content("Symfony-VarDumper print");
+VarPrint::console("Kint log in browser JS console!");
 
-vp_rich("Rich print Alias !");
-vp_simple("Simple print alias !");
-vp_focus("VarDumper print alias !");
+print_rich("Kint rich print Alias !");
+print_simple("Kint simple print alias !");
+print_content("Symfony-VarDumper alias !");
+print_console("Kint browser-console log alias");
 
-kill_vp_rich("Rich-print and kill script");
-kill_vp_simple("Simple-print and kill script");
-kill_vp_focus("VarDumper print and kill script");
+die_rich("Rich-print and kill script");
+die_simple("Simple-print and kill script");
+die_content("Symfony-VarDumper print and kill script");
+die_console("JS console and kill script");
 ```
 
 

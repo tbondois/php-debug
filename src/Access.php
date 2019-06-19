@@ -11,7 +11,7 @@ class Access
     const ENV_ALLOWED_ADDRS  = "TB_DEBUG_ALLOWED_ADDRS";
 
     /**
-     * Detect if focus is permanently blocked
+     * Detect if content is permanently blocked
      * @return bool
      */
     public static function isAllowed()
@@ -24,7 +24,7 @@ class Access
 
             if ($strAllowedAddrs) {
                 $clientAddr = $_SERVER["REMOTE_ADDR"] ?? null;
-                if (PHP_SAPI === 'rich_cli' && null === $clientAddr) {
+                if (PHP_SAPI === 'cli_rich' && null === $clientAddr) {
                     return true;
                 }
                 $allowedAddrs = explode(",", $strAllowedAddrs);

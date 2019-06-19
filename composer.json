@@ -3,7 +3,11 @@
     "description": "PHP debug libraries (dumpers...) for common needs. should not be installed in production or use IP restriction feature.",
     "require": {
         "php": ">=7.0",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-mbstring": "*",
         "kint-php/kint": "^3.2",
+        "kint-php/kint-js": "*",
         "symfony/var-dumper": "*"
     },
     "minimum-stability": "stable",

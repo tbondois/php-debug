@@ -4,6 +4,7 @@ namespace TB\Debug;
 
 use Kint\Kint;
 use Symfony\Component\VarDumper\VarDumper;
+use Kint\Renderer\JsRenderer;
 
 /**
  * @author Thomas Bondois
@@ -15,25 +16,9 @@ class VarPrint
 
     protected static $isEnabled = true;
 
-    /**
-     * use symfony focus() function (in case of problem with Kint), handling isEnabled
-     * @param mixed ...$vars
-     * @return int|string
-     */
-    public static function focus(...$vars)
-    {
-        if (!static::isEnabled() && function_exists("dump")) {
-            return null;
-        }
-
-        foreach ($vars as $var) {
-            VarDumper::dump($var);
-        }
-    }
-
 
     /**
-     * Should run rich_html() or rich_cli()
+     * Should run html_rich() or cli_rich()
      * @param mixed ...$vars
      * @return int|string|null
      */
@@ -46,113 +31,139 @@ class VarPrint
     }
 
     /**
-     * Should run simple_html() or simple_cli()
+     * Should run html_simple() or cli_simple()
      *
-     * The output is in text rich_html escaped text
+     * The output is in text html_rich escaped text
      * with some minor visibility enhancements added.
      * If run in CLI mode, output is not escaped.
      *
      * @see s()
      * @param mixed ...$vars
-     * @return int|mixed
+     * @return int|mixed|null
      */
     public static function simple(...$vars)
     {
         if (!static::isEnabled()) {
             return null;
         }
-        $stashedMode = Kint::$enabled_mode;
-        if (Kint::MODE_TEXT !== Kint::$enabled_mode) {
-            Kint::$enabled_mode = Kint::MODE_PLAIN;
-            if (PHP_SAPI === 'cli' && true === Kint::$cli_detection) {
-                Kint::$enabled_mode = Kint::MODE_TEXT;
-            }
+        $renderer = Kint::MODE_PLAIN;
+        if (PHP_SAPI === 'cli' && true === Kint::$cli_detection) {
+            $renderer = Kint::MODE_TEXT;
         }
-        $dump = Kint::dump(...$vars);
-        Kint::$enabled_mode = $stashedMode;
-        return $dump;
-    }
-
-
-    /**
-     * focus in rich text (colored lines - some terminal don't manage it properly)
-     * @param mixed ...$vars
-     * @return int|string
-     */
-    public static function rich_cli(...$vars)
-    {
-        $stashedMode = Kint::$enabled_mode;
-        Kint::$enabled_mode = Kint::MODE_CLI;
-        $dump = Kint::dump(...$vars);
-        Kint::$enabled_mode = $stashedMode;
-        return $dump;
+        return static::kint_dump_render($renderer, ...$vars);
     }
 
     /**
-     * focus in just text
+     * The output is dumped to the javascript console and stored in window.kintDump
+     * If run in CLI mode, output render is adapted.
+     * @see j()
      * @param mixed ...$vars
-     * @return int|string
+     *
+     * @return string|null
      */
-    public static function simple_cli(...$vars)
+    public static function console(...$vars)
     {
         if (!static::isEnabled()) {
             return null;
         }
-        $stashedMode = Kint::$enabled_mode;
-        Kint::$enabled_mode = Kint::MODE_TEXT;
-        $dump = Kint::dump(...$vars);
-        Kint::$enabled_mode = $stashedMode;
-        return $dump;
+        $renderer = JsRenderer::RENDER_MODE;
+        if (PHP_SAPI === 'cli' && true === Kint::$cli_detection) {
+            $renderer = Kint::MODE_TEXT;
+        }
+        return static::kint_dump_render($renderer, ...$vars);
     }
 
     /**
-     * focus in rich text
+     * content in rich text
      * @param mixed ...$vars
-     * @return int|string
+     * @return int|string|null
      */
-    public static function rich_html(...$vars)
+    public static function html_rich(...$vars)
+    {
+        return static::kint_dump_render(Kint::MODE_RICH, ...$vars);
+    }
+
+    /**
+     * content in text text
+     * @param mixed ...$vars
+     * @return int|string|null
+     */
+    public static function html_simple(...$vars)
+    {
+        return static::kint_dump_render(Kint::MODE_PLAIN, ...$vars);
+    }
+
+    /**
+     * content in rich text (colored lines - some terminal don't manage it properly)
+     * @param mixed ...$vars
+     * @return int|string|null
+     */
+    public static function cli_rich(...$vars)
+    {
+        return static::kint_dump_render(Kint::MODE_CLI, ...$vars);
+    }
+
+    /**
+     * content in just text
+     * @param mixed ...$vars
+     * @return int|string|null
+     */
+    public static function cli_simple(...$vars)
+    {
+        return static::kint_dump_render(Kint::MODE_TEXT, ...$vars);
+    }
+
+
+    /**
+     * Render for js console log Skip cli detection
+     * @param mixed ...$vars
+     *
+     * @return int|string|null
+     * @author Thomas Bondois <thomas.bondois@agence-tbd.com>
+     */
+    public static function console_js(...$vars)
+    {
+        return static::kint_dump_render(JsRenderer::RENDER_MODE, ...$vars);
+    }
+
+    /**
+     * @param string $renderer
+     * @param mixed ...$vars
+     * @return int|string|null
+     */
+    public static function kint_dump_render($renderer, ...$vars)
     {
         if (!static::isEnabled()) {
             return null;
         }
-        $stashedMode = Kint::$enabled_mode;
-        Kint::$enabled_mode = Kint::MODE_RICH;
-        $dump = Kint::dump(...$vars);
-        Kint::$enabled_mode = $stashedMode;
-        return $dump;
+        Kint::$enabled_mode = $renderer;
+        $out = Kint::dump(...$vars);
+        Kint::$enabled_mode = true;
+        return $out;
     }
 
     /**
-     * focus in text text
+     * use symfony dump() function (in case of problem with Kint), handling isEnabled
+     * It will give indication about variable names, backtrace etc. just the content of variables, in black background
      * @param mixed ...$vars
-     * @return int|string
+     * @return string|null
      */
-    public static function simple_html(...$vars)
+    public static function content(...$vars)
     {
         if (!static::isEnabled()) {
             return null;
         }
-        $stashedMode = Kint::$enabled_mode;
-        Kint::$enabled_mode = Kint::MODE_PLAIN;
-        $dump = Kint::dump(...$vars);
-        Kint::$enabled_mode = $stashedMode;
-        return $dump;
+        foreach ($vars as $var) {
+            VarDumper::dump($var);
+        }
     }
 
-    public static function isEnabled()
+    public static function isEnabled() : bool
     {
         if (!Access::isAllowed()) {
-            static::setEnabled(false);
+            static::disable();
         }
         return (bool)static::$isEnabled;
-    }
-
-    /**
-     * @param bool $value
-     */
-    public static function setEnabled($value)
-    {
-        Kint::$enabled_mode  = static::$isEnabled = (bool)$value;
     }
 
     public static function enable()
@@ -166,6 +177,13 @@ class VarPrint
         static::setEnabled(false);
     }
 
+    /**
+     * @param bool $value
+     */
+    public static function setEnabled($value)
+    {
+        Kint::$enabled_mode  = static::$isEnabled = (bool)$value;
+    }
 
 
 
