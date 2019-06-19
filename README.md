@@ -37,13 +37,12 @@ Usage
 
 ```php
 include_once 'vendor/autoload.php';
-use TB\Debug\VarPrint;
 
-VarPrint::rich("Kint rich print in hmtl or terminal");
-VarPrint::simple("Kint simple print in hmtl or terminal");
-VarPrint::content("Symfony-VarDumper print");
-VarPrint::console("Kint log in browser JS console, or terminal");
-$dump = VarPrint::return("Kint log in browser JS console!"); // do not print but return, to use in a log file for example
+\varprint::rich("Kint rich print in hmtl or terminal");
+\varprint::simple("Kint simple print in hmtl or terminal");
+\varprint::content("Symfony-VarDumper print");
+\varprint::console("Kint log in browser JS console, or terminal");
+$dump = \varprint::return("Kint log in browser JS console!"); // do not print but return, to use in a log file for example
 
 // I recommand using aliases instead, more precision about calling origin and possible use of Kint modifiers :
 

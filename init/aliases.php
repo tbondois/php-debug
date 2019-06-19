@@ -2,6 +2,8 @@
 
 use TB\Debug\VarPrint;
 
+class_alias('TB\\Debug\\VarPrint', 'varprint');
+
 // adapting the King native d() alias :
 $kintAlias = 'd';
 if (!function_exists($kintAlias)) {

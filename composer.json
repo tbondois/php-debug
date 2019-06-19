@@ -3,19 +3,19 @@
     "description": "PHP debug libraries (dumpers...) for common needs. should not be installed in production or use IP restriction feature.",
     "require": {
         "php": ">=7.0",
-        "symfony/polyfill-iconv": "*",
-        "symfony/polyfill-ctype": "*",
-        "symfony/polyfill-mbstring": "*",
         "kint-php/kint": "^3.2",
-        "kint-php/kint-js": "*",
-        "symfony/var-dumper": "*"
+        "kint-php/kint-js": "^2.0",
+        "symfony/var-dumper": ">=2.8",
+        "symfony/polyfill-mbstring": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-ctype": "*"
     },
     "minimum-stability": "stable",
     "suggest": {
         "tbondois/php-toolbox": "PHP libraries for common needs",
-        "maximebf/debugbar": "A generic PHP Debug toolbar monitoring errors and exception, sql queries, ajax etc",
+        "symfony/dotenv": "An easy way to manage IP restriction for debug features, in sensitive environments",
         "symfony/debug": "Allow you to easily catch PHP errors, uncaught exceptions, class loader errors and display them nicely",
-        "symfony/dotenv": "An easy way to manage IP restriction for debug features, in sensitive environments"
+        "maximebf/debugbar": "A generic PHP Debug toolbar monitoring errors and exception, sql queries, ajax etc"
     },
     "autoload": {
         "psr-4": {
@@ -32,6 +32,7 @@
     },
     "extra": {
         "kint": {
+            "disable-facade": true,
             "disable-helpers": true
         }
     },
