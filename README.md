@@ -38,19 +38,11 @@ Usage
 ```php
 include_once 'vendor/autoload.php';
 
-\varprint::rich("Kint rich print in hmtl or terminal");
-\varprint::simple("Kint simple print in hmtl or terminal");
-\varprint::content("Symfony-VarDumper print");
-\varprint::console("Kint log in browser JS console, or terminal");
-$dump = \varprint::return("Kint log in browser JS console!"); // do not print but return, to use in a log file for example
-
-// I recommand using aliases instead, more precision about calling origin and possible use of Kint modifiers :
-
-print_rich("Kint rich print Alias !");
+print_rich("Kint rich print alias !");
 print_simple("Kint simple print alias !");
 print_content("Symfony-VarDumper alias !");
 print_console("Kint browser-console log alias");
-print_return("Kint return alias");
+$dump = print_return("Kint return alias");
 
 die_rich("Rich-print and kill script");
 die_simple("Simple-print and kill script");
