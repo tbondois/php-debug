@@ -64,7 +64,7 @@ die_console("JS console and kill script");
 TB_DEBUG_RESTRICTED = true
 ```
 
-- If you want the features being executed for specific IP, define in your `$_ENV` or `$_SERVER `:
+- If you want the features being executed for specific IP, define in `.env` file or `$_SERVER `:
 ```
 TB_DEBUG_RESTRICTED = true
 TB_DEBUG_ALLOWED_ADDRS = "<IP ADDRESSES>"

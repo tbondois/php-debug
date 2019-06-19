@@ -24,7 +24,7 @@ class Access
 
             if ($strAllowedAddrs) {
                 $clientAddr = $_SERVER["REMOTE_ADDR"] ?? null;
-                if (PHP_SAPI === 'cli_rich' && null === $clientAddr) {
+                if (PHP_SAPI === 'cli' && null === $clientAddr) {
                     return true;
                 }
                 $allowedAddrs = explode(",", $strAllowedAddrs);
