@@ -45,6 +45,7 @@ VarPrint::content("Symfony-VarDumper print");
 VarPrint::console("Kint log in browser JS console, or terminal");
 $dump = VarPrint::return("Kint log in browser JS console!"); // do not print but return, to use in a log file for example
 
+// I recommand using aliases instead, more precision about calling origin and possible use of Kint modifiers :
 
 print_rich("Kint rich print Alias !");
 print_simple("Kint simple print alias !");
