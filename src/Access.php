@@ -21,7 +21,7 @@ class Access
     public static function isAllowed()
     {
 
-        $confRestricted = getenv(static::KEY_BLOCK_MODE) ?? $_SERVER[static::KEY_BLOCK_MODE] ?? $_GET[static::KEY_BLOCK_MODE];
+        $confRestricted = getenv(static::KEY_BLOCK_MODE) ?? $_SERVER[static::KEY_BLOCK_MODE] ?? $_GET[static::KEY_BLOCK_MODE] ?? 0;
         $confRestricted = (int)$confRestricted;
         if ($confRestricted > 0) {
 
