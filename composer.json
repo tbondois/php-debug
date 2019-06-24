@@ -13,7 +13,7 @@
     "minimum-stability": "stable",
     "suggest": {
         "tbondois/php-toolbox": "PHP libraries for common needs",
-        "symfony/dotenv": "An easy way to manage IP restriction for debug features, in sensitive environments",
+        "symfony/dotenv": "An easy way to manage multiple environments configurations",
         "symfony/debug": "Allow you to easily catch PHP errors, uncaught exceptions, class loader errors and display them nicely",
         "maximebf/debugbar": "A generic PHP Debug toolbar monitoring errors and exception, sql queries, ajax etc"
     },
@@ -32,7 +32,6 @@
     },
     "extra": {
         "kint": {
-            "disable-facade": true,
             "disable-helpers": true
         }
     },
@@ -51,6 +50,8 @@
         "print",
         "dump",
         "dumper",
+        "symfony",
+        "laravel",
         "php"
     ]
 }

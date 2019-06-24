@@ -9,10 +9,8 @@ use Kint\Renderer\JsRenderer;
 /**
  * @author Thomas Bondois
  */
-class VarPrint
+class DebugPrint
 {
-    const TB_DEBUG_RESTRICTED   = "TB_DEBUG_RESTRICTED";
-    const ENV_ALLOWED_ADDRS     = "TB_DEBUG_ALLOWED_ADDRS";
 
     protected static $isEnabled = true;
 
@@ -191,7 +189,5 @@ class VarPrint
     {
         Kint::$enabled_mode  = static::$isEnabled = (bool)$value;
     }
-
-
 
 } // end class
